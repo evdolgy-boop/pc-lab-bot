@@ -1,10 +1,11 @@
 import os
+import telebot
+from datetime import datetime
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 BOT_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 SHEET_ID = "15NYmrZj1ZU3OofeRWzd20tUEZNpOiFidXAcQ0v5WcU4"
-# ================
-
-bot = telebot.TeleBot(BOT_TOKEN)
 
 # Подключение к Google Sheets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
