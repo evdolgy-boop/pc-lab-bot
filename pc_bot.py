@@ -1,6 +1,6 @@
 import os
 
-BOT_TOKEN = os.environ.get("TELEGRAM_TOKEN", "8664146267:AAHnfTtoEChAWxH7hL1wZcBVSOKOt8CJhxs"
+BOT_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 SHEET_ID = "15NYmrZj1ZU3OofeRWzd20tUEZNpOiFidXAcQ0v5WcU4"
 # ================
 
