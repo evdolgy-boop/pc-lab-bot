@@ -7,9 +7,14 @@ from oauth2client.service_account import ServiceAccountCredentials
 BOT_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 SHEET_ID = "15NYmrZj1ZU3OofeRWzd20tUEZNpOiFidXAcQ0v5WcU4"
 
-# Подключение к Google Sheets
+import json
+import base64
+
+# Подключение к Google Sheets через переменную окружения
+creds_json = base64.b64decode(os.environ.get("GOOGLE_CREDENTIALS_JSON")).decode('utf-8')
+creds_dict = json.loads(creds_json)
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 sheet = client.open_by_key(SHEET_ID).worksheet("Заказы")
 
