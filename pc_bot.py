@@ -3,12 +3,11 @@ import telebot
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import json
+import base64
 
 BOT_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 SHEET_ID = "15NYmrZj1ZU3OofeRWzd20tUEZNpOiFidXAcQ0v5WcU4"
-
-import json
-import base64
 
 # Подключение к Google Sheets через переменную окружения
 creds_json = base64.b64decode(os.environ.get("GOOGLE_CREDENTIALS_JSON")).decode('utf-8')
@@ -17,6 +16,9 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 sheet = client.open_by_key(SHEET_ID).worksheet("Заказы")
+
+# Создаём бота
+bot = telebot.TeleBot(BOT_TOKEN)
 
 # Хранилище сессий
 user_data = {}
